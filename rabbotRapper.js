@@ -166,8 +166,8 @@ const RabbotRapper = class RabbotRapper {
   // key is always undefined for events
 
 // Membership Events
-  updateTicker_Command (exchange, delay, corrID, callback) {
-    let message = MessageFactory.updateTickerCmd(exchange)
+  updateTicker_Command (exchange, updateVersion, delay, corrID, callback) {
+    let message = MessageFactory.updateTickerCmd(exchange, updateVersion)
     this.schedulePublish(message, 'queue.externalAPIHandler', delay, corrID).then(() => {
       callback()
     }).catch((err) => {
