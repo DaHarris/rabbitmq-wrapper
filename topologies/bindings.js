@@ -15,6 +15,15 @@ const bindings = [
 // Event Bindings   (NO KEYS FOR BINDINGS TO FANOUT EXCHANGES)
 // ***********************
 
+  {
+    exchange: 'exchange.exchangeUpdated',
+    target: 'queue.exchangeRankingHandler'
+  },
+  {
+    exchange: 'exchange.exchangeUpdated',
+    target: 'queue.historicalExchangeHandler'
+  },
+
 // Internal Bindings
   {
     exchange: 'internal.auditExchange',

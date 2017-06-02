@@ -9,6 +9,19 @@ const updateTickerCmd = (exchange, updateVersion) => {
   }
 }
 
+const exchangeUpdatedEvent = (exchange, tickers, timeStamp) => {
+  return {
+    exchange: 'exchange.exchangeUpdated',
+    type: 'event.externalAPI.exchangeUpdated',
+    payload: {
+      exchange: exchange,
+      tickers: tickers,
+      timeStamp: timeStamp
+    }
+  }
+}
+
 module.exports = {
-  updateTickerCmd: updateTickerCmd
+  updateTickerCmd,
+  exchangeUpdatedEvent
 }

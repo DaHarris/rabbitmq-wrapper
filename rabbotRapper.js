@@ -165,10 +165,20 @@ const RabbotRapper = class RabbotRapper {
   // corrID parameter is always optional
   // key is always undefined for events
 
-// Membership Events
+// External API Commands
   updateTicker_Command (exchange, updateVersion, delay, corrID, callback) {
     let message = MessageFactory.updateTickerCmd(exchange, updateVersion)
     this.schedulePublish(message, 'queue.externalAPIHandler', delay, corrID).then(() => {
+      callback()
+    }).catch((err) => {
+      callback(err)
+    })
+  }
+
+  // External API Events
+  exchangeUpdated_Event (exchange, tickers, timeStamp, corrID, callback) {
+    let message = MessageFactory.exchangeUpdatedEvent(exchange, tickers, timeStamp)
+    this.rapperPublish(message, undefined, corrID).then(() => {
       callback()
     }).catch((err) => {
       callback(err)

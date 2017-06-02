@@ -6,6 +6,14 @@ const exchanges = [
     persistent: true
   },
 
+// External API Exchanges
+  {
+    name: 'exchange.exchangeUpdated',
+    type: 'fanout',
+    autoDelete: false,
+    persistent: true
+  },
+
 // Internal Exchanges
   {
     name: 'internal.delayExchange',
